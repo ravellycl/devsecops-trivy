@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Scan') {
       steps {
-        sh '/opt/homebrew/bin/trivy https://github.com/paredes-jr/devsecops-trivy.git'
+        sh '/opt/homebrew/bin/trivy repository https://github.com/paredes-jr/devsecops-trivy.git'
       }
     }
     stage('Approval') {
