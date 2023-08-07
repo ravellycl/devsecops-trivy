@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-                sh '/usr/local/bin/dockerrun -d -p 5050:80 corfo/devsecops:latest'
+                sh '/usr/local/bin/docker run -d -p 5050:80 corfo/devsecops:latest'
       }
     }
   }
