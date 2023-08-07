@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Scan') {
       steps {
-        sh '/opt/homebrew/bin/trivy image corfo/devsecops:latest'
+        sh '/opt/homebrew/bin/trivy corfo/devsecops:latest'
       }
     }
     stage('Approval') {
