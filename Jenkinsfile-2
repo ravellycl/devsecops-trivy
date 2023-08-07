@@ -1,0 +1,25 @@
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        sh '/usr/local/bin/docker build -t corfo/devsecops:latest .'
+      }
+    }
+    stage('Scan') {
+      steps {
+        sh '/opt/homebrew/bin/trivy image --no-progress --exit-code 1 --severity HIGH,CRITICAL corfo/devsecops:latest'
+      }
+    }
+    stage('Approval') {
+      steps {
+        input(message: 'Approval required before Terraform', ok: 'Proceed', submitterParameter: 'APPROVER')
+      }
+    }
+    stage('terraform') {
+      steps {
+                sh '/usr/local/bin/dockerrun -d -p 5050:80 corfo/devsecops:latest'
+      }
+    }
+  }
+}
