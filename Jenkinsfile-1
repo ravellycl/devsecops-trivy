@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Scan') {
       steps {
-        sh '/opt/homebrew/bin/trivy fs --security-checks .'
+        sh '/opt/homebrew/bin/trivy fs --security-checks vuln,config   .'
       }
     }
     stage('Approval') {
