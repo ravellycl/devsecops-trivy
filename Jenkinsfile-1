@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Scan') {
       steps {
-        sh '/opt/homebrew/bin/trivy  --exit-code 1 --severity HIGH,CRITICAL repository https://github.com/paredes-jr/devsecops-trivy.git'
+        sh '/opt/homebrew/bin/trivy  --exit-code 1 --severity HIGH,CRITICAL repository https://github.com/WebGoat/WebGoat.git'
       }
     }
     stage('Approval') {
