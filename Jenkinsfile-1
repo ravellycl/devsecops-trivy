@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '/usr/local/bin/docker build -t corfo/devsecops:latest .'
-      }
+        sh '/usr/local/bin/docker build -t devsecops-image01:latest .'
+      }/usr/local/bin/trivy
     }
     stage('Scan') {
       steps {
-        sh '/opt/homebrew/bin/trivy  --exit-code 1 --severity HIGH,CRITICAL repository https://github.com/paredes-jr/devsecops-trivy.git'
+        sh '  --exit-code 1 --severity HIGH,CRITICAL repository https://github.com/paredes-jr/devsecops-trivy.git'
       }
     }
     stage('Approval') {
@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-                sh '/usr/local/bin/docker run -d -p 5050:80 corfo/devsecops:latest'
+                sh '/usr/bin/docker run -d -p 5050:80 devsecops:latest'
       }
     }
   }
