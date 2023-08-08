@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '/usr/local/bin/docker build -t devsecops-image01:latest .'
+        sh '/usr/local/bin/docker build -t devsecops:latest .'
       }/usr/local/bin/trivy
     }
     stage('Scan') {
