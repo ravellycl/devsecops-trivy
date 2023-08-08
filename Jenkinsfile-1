@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '/usr/local/bin/docker build -t devsecops:latest .'
-      }/usr/local/bin/trivy
+        sh 'docker build -t devsecops:latest .'
+      }
     }
     stage('Scan') {
       steps {
-        sh '  --exit-code 1 --severity HIGH,CRITICAL repository https://github.com/paredes-jr/devsecops-trivy.git'
+        sh '/usr/local/bin/trivy  --exit-code 1 --severity HIGH,CRITICAL repository https://github.com/paredes-jr/devsecops-trivy.git'
       }
     }
     stage('Approval') {
